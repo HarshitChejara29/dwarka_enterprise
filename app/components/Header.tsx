@@ -1,55 +1,58 @@
 "use client";
 
 import { useState } from "react";
-// import { Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { FaPhoneAlt } from "react-icons/fa";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-[#040503] border-[#FFFFFF] border-b">
-      <div className="mx-auto flex items-center justify-between px-4 lg:py-7 py-6 sm:px-20">
+    <header className="sticky top-0 z-50 bg-[#040503] border-b border-white">
+      <div className="mx-auto flex items-center justify-between px-4 py-6 sm:px-20">
+        {/* Logo (Desktop) */}
+        <Link href="/" className="hidden md:flex items-center">
+          <Image
+            src="/logo1.png"
+            alt="Company Logo"
+            width={120}
+            height={40}
+            className="object-contain"
+          />
+        </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center space-x-8">
-          <Link href="/" className="flex items-center">
-            <Image
-              src="/logo1.png"
-              alt="Company Logo"
-              width={120}
-              height={40}
-              className="object-contain"
-            />
-          </Link>
-        </nav>
-
-        {/* left */}
-        <div className="text-white hidden md:block space-x-8">
-          <Link href="/about" className="hover:text-gray-600">
+        <div className="text-white hidden md:flex items-center justify-center space-x-8">
+          <Link href="/about" className="hover:text-gray-400 transition">
             About Us
           </Link>
-          <Link href="/product" className="hover:text-gray-600">
+          <Link href="/product" className="hover:text-gray-400 transition">
             Products
           </Link>
-          <Link href="/project" className="hover:text-gray-600">
+          <Link href="/project" className="hover:text-gray-400 transition">
             Projects
           </Link>
-          <Link href="/gallery" className="hover:text-gray-600">
+          <Link href="/gallery" className="hover:text-gray-400 transition">
             Gallery
           </Link>
-          <Link href="/contact" className="hover:text-gray-600">
+          <Link href="/contact" className="hover:text-gray-400 transition">
             Contact Us
           </Link>
-          <Link href="/contact" className="cursor-pointer text-white border border-white font-medium px-4 py-3 rounded-full hover:bg-[#FFFFFF] hover:text-[#000000] transition">
-            +91 9376639399
-          </Link>
+
+          <a
+            href="tel:+919376639399"
+            className="flex items-center gap-2 cursor-pointer text-white border border-white font-medium px-4 py-3 rounded-md hover:border-[#AA2022] hover:text-white hover:bg-[#AA2022] transition"
+          >
+            <FaPhoneAlt className="text-lg" />
+            <span>+91 9376639399</span>
+          </a>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <div className="md:hidden flex items-center w-full px-2">
-          {/* Logo on the left */}
+        {/* Mobile Header */}
+        <div className="md:hidden flex items-center justify-between w-full">
+          {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
               src="/logo1.png"
@@ -60,60 +63,67 @@ const Header = () => {
             />
           </Link>
 
-          {/* Menu button at far right */}
-          <div className="cursor-pointer ml-auto text-black">
-            <button onClick={() => setIsOpen(!isOpen)}>
-              {/* {isOpen ? <X size={28} /> : <Menu size={28} />} */}
-            </button>
-          </div>
+          {/* Menu Toggle */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="cursor-pointer text-white focus:outline-none"
+          >
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-[#f9f7f2] px-4 py-4 space-y-3">
+        <div className="md:hidden bg-[#f9f7f2] px-6 py-6 space-y-4 flex flex-col items-start">
           <Link
             href="/about"
-            className="block text-black hover:text-gray-600"
+            className="text-black hover:text-gray-600 transition"
             onClick={() => setIsOpen(false)}
           >
             About Us
           </Link>
+
           <Link
             href="/product"
-            className="block text-black hover:text-gray-600"
+            className="text-black hover:text-gray-600 transition"
             onClick={() => setIsOpen(false)}
           >
             Products
           </Link>
+
           <Link
             href="/project"
-            className="block text-black hover:text-gray-600"
+            className="text-black hover:text-gray-600 transition"
             onClick={() => setIsOpen(false)}
           >
-            Project
+            Projects
           </Link>
+
           <Link
             href="/gallery"
-            className="block text-black hover:text-gray-600"
+            className="text-black hover:text-gray-600 transition"
             onClick={() => setIsOpen(false)}
           >
             Gallery
           </Link>
+
           <Link
             href="/contact"
-            className="block text-black hover:text-gray-600"
+            className="text-black hover:text-gray-600 transition"
             onClick={() => setIsOpen(false)}
           >
             Contact Us
           </Link>
-          <Link
-            href="/contact"
-            className="cursor-pointer block font-medium px-4 py-3 rounded-full hover:bg-purple-200 transition text-center"
+
+          <a
+            href="tel:+919376639399"
+            className="flex items-center gap-2 cursor-pointer border border-black text-gray-600 hover:text-white hover:bg-[#AA2022] font-medium px-4 py-3 rounded-md hover:bg-[#8a1b1c] transition w-auto"
             onClick={() => setIsOpen(false)}
           >
-            +91 9376639399
-          </Link>
+            <FaPhoneAlt className="text-lg" />
+            <span>+91 9376639399</span>
+          </a>
         </div>
       )}
     </header>
