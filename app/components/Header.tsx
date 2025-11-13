@@ -1,0 +1,123 @@
+"use client";
+
+import { useState } from "react";
+// import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+
+const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <header className="sticky top-0 z-50 bg-[#040503] border-[#FFFFFF] border-b">
+      <div className="mx-auto flex items-center justify-between px-4 lg:py-7 py-6 sm:px-20">
+
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center space-x-8">
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo1.png"
+              alt="Company Logo"
+              width={120}
+              height={40}
+              className="object-contain"
+            />
+          </Link>
+        </nav>
+
+        {/* left */}
+        <div className="text-white hidden md:block space-x-8">
+          <Link href="/about" className="hover:text-gray-600">
+            About Us
+          </Link>
+          <Link href="/product" className="hover:text-gray-600">
+            Products
+          </Link>
+          <Link href="/project" className="hover:text-gray-600">
+            Projects
+          </Link>
+          <Link href="/gallery" className="hover:text-gray-600">
+            Gallery
+          </Link>
+          <Link href="/contact" className="hover:text-gray-600">
+            Contact Us
+          </Link>
+          <Link href="/contact" className="cursor-pointer text-white border border-white font-medium px-4 py-3 rounded-full hover:bg-[#FFFFFF] hover:text-[#000000] transition">
+            +91 9376639399
+          </Link>
+        </div>
+
+        {/* Mobile Menu Toggle */}
+        <div className="md:hidden flex items-center w-full px-2">
+          {/* Logo on the left */}
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo1.png"
+              alt="Company Logo"
+              width={100}
+              height={35}
+              className="object-contain"
+            />
+          </Link>
+
+          {/* Menu button at far right */}
+          <div className="cursor-pointer ml-auto text-black">
+            <button onClick={() => setIsOpen(!isOpen)}>
+              {/* {isOpen ? <X size={28} /> : <Menu size={28} />} */}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden bg-[#f9f7f2] px-4 py-4 space-y-3">
+          <Link
+            href="/about"
+            className="block text-black hover:text-gray-600"
+            onClick={() => setIsOpen(false)}
+          >
+            About Us
+          </Link>
+          <Link
+            href="/product"
+            className="block text-black hover:text-gray-600"
+            onClick={() => setIsOpen(false)}
+          >
+            Products
+          </Link>
+          <Link
+            href="/project"
+            className="block text-black hover:text-gray-600"
+            onClick={() => setIsOpen(false)}
+          >
+            Project
+          </Link>
+          <Link
+            href="/gallery"
+            className="block text-black hover:text-gray-600"
+            onClick={() => setIsOpen(false)}
+          >
+            Gallery
+          </Link>
+          <Link
+            href="/contact"
+            className="block text-black hover:text-gray-600"
+            onClick={() => setIsOpen(false)}
+          >
+            Contact Us
+          </Link>
+          <Link
+            href="/contact"
+            className="cursor-pointer block font-medium px-4 py-3 rounded-full hover:bg-purple-200 transition text-center"
+            onClick={() => setIsOpen(false)}
+          >
+            +91 9376639399
+          </Link>
+        </div>
+      )}
+    </header>
+  );
+};
+
+export default Header;

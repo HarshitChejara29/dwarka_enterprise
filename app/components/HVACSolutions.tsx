@@ -1,0 +1,82 @@
+"use client";
+import Image from "next/image";
+import React from "react";
+
+const HVACSolutions = () => {
+  const brands = [
+    { src: "/brands/lg.png", alt: "LG" },
+    { src: "/brands/voltas.png", alt: "Voltas" },
+    { src: "/brands/toshiba.png", alt: "Toshiba" },
+    { src: "/brands/carrier.png", alt: "Carrier" },
+    { src: "/brands/general.png", alt: "General" },
+    { src: "/brands/og.png", alt: "OG" },
+  ];
+
+  return (
+    <section className="bg-white py-16 px-6 lg:px-20">
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
+        {/* Left Content */}
+        <div className="lg:w-1/2 text-center lg:text-left">
+          <div className="flex justify-center lg:justify-start">
+            <Image
+              src="/about/hvac-solutions.png"
+              alt="HVAC Solutions"
+              width={800}
+              height={400}
+              className="object-contain"
+            />
+          </div>
+        </div>
+
+        {/* Right Image with Button */}
+        <div className="relative lg:w-1/2 w-full flex justify-center">
+          <Image
+            src="/about/hvac-team.jpeg"
+            alt="HVAC Team"
+            width={800}
+            height={400}
+            className="rounded-xl object-cover"
+          />
+          <button className="absolute bottom-4 right-4 bg-white text-[#0C1622] font-semibold px-4 py-2 rounded-lg shadow-md flex items-center gap-2 hover:bg-gray-100 transition">
+            Know More →
+          </button>
+        </div>
+      </div>
+
+      {/* Brand Logos Section */}
+      <div className="mt-6">
+        <p className="text-[#0C1622] text-sm md:text-base mb-6 leading-relaxed mx-auto">
+            Dwarka Enterprise is a nationally recognized HVAC turnkey contracting and
+            supply company, providing comprehensive climate control solutions across
+            residential, healthcare, corporate, educational, and industrial sectors
+            throughout India. With decades of experience and partnerships with multiple
+            leading global HVAC brands, we deliver integrated, energy-efficient, and
+            future-ready systems designed to meet the highest standards of performance
+            and reliability.
+        </p>
+
+        <div className="border-t border-b border-[#16222E] py-4 flex flex-wrap justify-between items-center w-full">
+          {brands.map((brand, index) => (
+            <React.Fragment key={index}>
+              <div className="flex-1 flex items-center justify-center min-w-[120px]">
+                <Image
+                  src={brand.src}
+                  alt={brand.alt}
+                  width={120}
+                  height={60}
+                  className="object-contain h-12"
+                />
+              </div>
+              {/* Divider except after last item */}
+              {index !== brands.length - 1 && (
+                <div className="hidden sm:block w-px h-16 bg-[#16222E]"></div>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default HVACSolutions;
