@@ -1,49 +1,144 @@
 'use client';
 
-import Image from 'next/image';
-import { PlayCircle } from 'lucide-react';
+import { useState } from 'react';
+import { ChevronLeft, ChevronRight, X, Play } from 'lucide-react';
 
 const videos = [
-  { thumbnail: '/videos/thumb1.jpg', url: '/videos/video1.mp4' },
-  { thumbnail: '/videos/thumb2.jpg', url: '/videos/video2.mp4' },
-  { thumbnail: '/videos/thumb3.jpg', url: '/videos/video3.mp4' },
-  { thumbnail: '/videos/thumb4.jpg', url: '/videos/video4.mp4' },
+  { url: '/gallery/videos/video1.mp4' },
+  { url: '/gallery/videos/video2.mp4' },
+  { url: '/gallery/videos/video3.mp4' },
+  { url: '/gallery/videos/video4.mp4' },
+  { url: '/gallery/videos/video5.mp4' },
+  { url: '/gallery/videos/video6.mp4' },
+  { url: '/gallery/videos/video7.mp4' },
+  { url: '/gallery/videos/video8.mp4' },
 ];
 
 export default function SiteVideos() {
+  const [current, setCurrent] = useState(0);
+  const [popupIndex, setPopupIndex] = useState<number | null>(null);
+
+  // INFINITE NEXT/PREV
+  const prev = () => {
+    setCurrent((prevIndex) =>
+      prevIndex === 0 ? videos.length - 3 : prevIndex - 1
+    );
+  };
+
+  const next = () => {
+    setCurrent((prevIndex) =>
+      prevIndex === videos.length - 3 ? 0 : prevIndex + 1
+    );
+  };
+
+  // POPUP NEXT/PREV (ALSO LOOP)
+  const popupNext = () => {
+    setPopupIndex((i) => {
+      if (i === null) return null;
+      return i === videos.length - 1 ? 0 : i + 1;
+    });
+  };
+
+  const popupPrev = () => {
+    setPopupIndex((i) => {
+      if (i === null) return null;
+      return i === 0 ? videos.length - 1 : i - 1;
+    });
+  };
+
   return (
-    <section className="bg-gray-50 py-12 px-6 lg:px-20">
-        <h2 className="lg:text-6xl text-3xl font-semibold text-gray-800 mb-8">
-          Site Videos
-        </h2>
+    <section className="bg-[#F7F6F2] py-20 px-6 lg:px-20">
+      <h2 className="lg:text-6xl text-3xl font-semibold text-gray-800 mb-12">
+        Site Videos
+      </h2>
 
-        {/* Video Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {videos.map((video, i) => (
-            <div
-              key={i}
-              className="relative rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition group cursor-pointer"
-            >
-              <Image
-                src={video.thumbnail}
-                alt={`Site video ${i + 1}`}
-                width={400}
-                height={600}
-                className="object-cover h-full w-full group-hover:scale-105 transition-transform duration-300"
-              />
+      {/* Carousel */}
+      <div className="relative flex items-center">
 
-              {/* Play icon overlay */}
-              <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition">
-                <PlayCircle size={64} className="text-white drop-shadow-lg" />
+        {/* LEFT ARROW */}
+        <button
+          onClick={prev}
+          className="absolute -left-10 z-10 p-2 rounded-full hover:bg-gray-100 transition"
+        >
+          <ChevronLeft size={32} strokeWidth={1.5} />
+        </button>
+
+        {/* VIDEO LIST */}
+        <div className="overflow-hidden w-full mb-0">
+          <div
+            className="flex gap-6 transition-transform duration-500 ease-in-out"
+            style={{ transform: `translateX(-${current * 25}%)` }}
+          >
+            {videos.map((video, i) => (
+              <div
+                key={i}
+                className="relative bg-black flex-shrink-0 rounded-xl overflow-hidden w-full md:w-1/4 cursor-pointer group"
+                onClick={() => setPopupIndex(i)}
+              >
+                {/* Play Icon */}
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 flex items-center justify-center transition">
+                  <Play size={50} className="text-white opacity-90" />
+                </div>
+
+                <video
+                  src={video.url}
+                  className="w-full h-full object-cover pointer-events-none"
+                />
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        {/* Divider line */}
-        <div className="py-10 flex justify-center">
-          <div className="h-0.5 bg-gray-300 w-2/3 rounded-full" />
+        {/* RIGHT ARROW */}
+        <button
+          onClick={next}
+          className="absolute -right-10 z-10 p-2 rounded-full hover:bg-gray-100 transition"
+        >
+          <ChevronRight size={32} strokeWidth={1.5} />
+        </button>
+
+      </div>
+
+      {/* POPUP */}
+      {popupIndex !== null && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-[999]">
+
+          {/* CLOSE */}
+          <button
+            onClick={() => setPopupIndex(null)}
+            className="absolute top-6 lg:right-6 right-2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-200"
+          >
+            <X size={28} />
+          </button>
+
+          {/* POPUP VIDEO */}
+          <div className="relative w-[90%] max-w-4xl bg-black rounded-xl overflow-hidden shadow-xl">
+            <video
+              src={videos[popupIndex].url}
+              controls
+              autoPlay
+              className="w-full h-[75vh] object-contain bg-black"
+            />
+          </div>
+
+          {/* POPUP PREV */}
+          <button
+            onClick={popupPrev}
+            className="absolute lg:left-70 left-2 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100"
+          >
+            <ChevronLeft size={32} />
+          </button>
+
+          {/* POPUP NEXT */}
+          <button
+            onClick={popupNext}
+            className="absolute lg:right-70 right-2 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100"
+          >
+            <ChevronRight size={32} />
+          </button>
         </div>
+      )}
+
     </section>
   );
 }
