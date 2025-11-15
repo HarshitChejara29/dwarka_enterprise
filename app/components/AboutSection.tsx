@@ -6,60 +6,94 @@ import Link from "next/link";
 const AboutSection: FC = () => {
   return (
     <section className="w-full">
-      {/* Vision Section */}
-      <div className="relative bg-[url('/about/our-vision.png')] bg-cover bg-center py-20 px-6 text-white">
-        <div className="absolute inset-0 bg-black/40"></div>
-        <div className="relative max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Vision</h2>
-          <p className="text-lg md:text-xl mb-6 leading-relaxed">
-            To be India’s top HVAC partner, driving innovation, sustainability, 
-            and comfort for a brighter, greener future.
-          </p>
+
+      {/* ---------------------- VISION ---------------------- */}
+      <div
+        className="relative group bg-cover bg-center py-20 px-6 lg:px-20 text-white border-b"
+        style={{ backgroundImage: "url('/about/our-vision.png')" }}
+      >
+        {/* HOVER OVERLAY */}
+        <div className="absolute inset-0 bg-black/40
+          group-hover:bg-[#16222E] group-hover:bg-opacity-95
+          transition-all duration-300"></div>
+
+        {/* CONTENT */}
+        <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div className="flex flex-col md:max-w-3xl">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2">Our Vision</h2>
+            <p className="text-lg leading-relaxed">
+              To be India’s top HVAC partner, driving innovation, sustainability,
+              and comfort for a brighter, greener future.
+            </p>
+          </div>
+
           <Link
-            href="/products"
-            className="inline-block bg-white text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition"
+            href="/product"
+            className="border border-white text-white hover:text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-white transition whitespace-nowrap"
           >
             Explore Our Products →
           </Link>
         </div>
       </div>
 
-      {/* Mission Section */}
-      <div className="relative bg-[#0b1722] text-white py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Mission</h2>
-          <p className="text-lg md:text-xl mb-6 leading-relaxed">
-            Delivering excellence in HVAC solutions, we create healthier, efficient 
-            indoor spaces, exceeding client expectations across India.
-          </p>
+      {/* ---------------------- MISSION ---------------------- */}
+      <div
+        className="relative group bg-cover bg-center py-20 px-6 lg:px-20 text-white border-b"
+        style={{ backgroundImage: "url('/about/our-mission.png')" }}
+      >
+        {/* HOVER OVERLAY */}
+        <div className="absolute inset-0 bg-black/40
+          group-hover:bg-[#16222E] group-hover:bg-opacity-95
+          transition-all duration-300"></div>
+
+        {/* CONTENT */}
+        <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div className="flex flex-col md:max-w-3xl">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2">Our Mission</h2>
+            <p className="text-lg leading-relaxed">
+              Delivering excellence in HVAC solutions, we create healthier,
+              efficient indoor spaces, exceeding client expectations across India.
+            </p>
+          </div>
+
           <Link
-            href="/projects"
-            className="inline-block bg-white text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition"
+            href="/project"
+            className="border border-white text-white hover:text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-white transition whitespace-nowrap"
           >
             See Our Projects →
           </Link>
         </div>
       </div>
 
-      {/* Core Values Section */}
-      <div className="relative bg-[url('/about/core-values.png')] bg-cover bg-center py-20 px-6 text-white">
-        <div className="absolute inset-0 bg-black/50"></div>
-        <div className="relative max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Core Values</h2>
-          <p className="text-lg md:text-xl leading-relaxed">
-            Excellence, Innovation, Customer Focus, Integrity, Sustainability, 
-            Safety, Teamwork, Adaptability, Community Engagement.
-          </p>
-          <div className="mt-6">
-            <Link
-              href="/contact"
-              className="inline-block bg-white text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition"
-            >
-              Get in Touch →
-            </Link>
+      {/* ---------------------- CORE VALUES ---------------------- */}
+      <div
+        className="relative group bg-cover bg-center py-20 px-6 lg:px-20 text-white"
+        style={{ backgroundImage: "url('/about/core-values.png')" }}
+      >
+        {/* HOVER OVERLAY */}
+        <div className="absolute inset-0 bg-black/50
+          group-hover:bg-[#16222E] group-hover:bg-opacity-95
+          transition-all duration-300"></div>
+
+        {/* CONTENT */}
+        <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div className="flex flex-col md:max-w-3xl">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2">Core Values</h2>
+            <p className="text-lg leading-relaxed">
+              Excellence, Innovation, Customer Focus, Integrity, Sustainability,
+              Safety, Teamwork, Adaptability, Community Engagement.
+            </p>
           </div>
+
+          <Link
+            href="/contact"
+            className="border border-white text-white hover:text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-white transition whitespace-nowrap"
+          >
+            Get in Touch →
+          </Link>
         </div>
       </div>
+
     </section>
   );
 };

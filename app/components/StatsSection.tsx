@@ -5,9 +5,10 @@ import { FC } from "react";
 
 const StatsSection: FC = () => {
   return (
-    <section className="bg-white py-20 px-6">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        {/* Left: Stats Grid */}
+    <section className="bg-white py-20 px-6 lg:px-20">
+      <div className="grid md:grid-cols-2 gap-12 items-center">
+
+        {/* LEFT — Stats Grid */}
         <div className="grid grid-cols-2 gap-6">
           {[
             { value: "1,482+", label: "Satisfied Clients" },
@@ -17,9 +18,9 @@ const StatsSection: FC = () => {
           ].map((stat, index) => (
             <div
               key={index}
-              className="bg-gray-50 rounded-2xl shadow-sm p-8 text-center hover:shadow-md transition"
+              className="bg-[#F7F6F2] rounded-2xl p-12 text-center transition"
             >
-              <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+              <h3 className="text-3xl md:text-5xl font-semibold text-gray-900 mb-4 hover:scale-110">
                 {stat.value}
               </h3>
               <p className="text-gray-700 text-sm md:text-base">{stat.label}</p>
@@ -27,11 +28,11 @@ const StatsSection: FC = () => {
           ))}
         </div>
 
-        {/* Right: Image */}
+        {/* RIGHT — Image */}
         <div className="flex justify-center">
-          <div className="relative w-full max-w-md h-[320px] md:h-[400px] rounded-2xl overflow-hidden shadow-lg">
+          <div className="relative w-full h-96 rounded-2xl overflow-hidden">
             <Image
-              src="/images/hvac-worker.jpg" // 🖼️ Replace with your image path
+              src="/about/hvac-worker.png"
               alt="HVAC worker"
               fill
               className="object-cover"
@@ -39,6 +40,7 @@ const StatsSection: FC = () => {
             />
           </div>
         </div>
+
       </div>
     </section>
   );

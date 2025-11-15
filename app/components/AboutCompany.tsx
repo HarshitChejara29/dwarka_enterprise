@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function AboutCompany() {
   return (
     <section className="bg-white py-16 px-6 md:px-12 lg:px-20">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* LEFT SIDE: Company Info */}
         <div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -45,57 +45,69 @@ export default function AboutCompany() {
           </div>
         </div>
 
-        {/* RIGHT SIDE: Image Grid + Text */}
-        <div className="relative grid grid-cols-2 gap-4">
-          <div className="col-span-1">
-            <div className="relative w-full h-64 rounded-lg overflow-hidden">
-              <Image
-                src="/images/hvac1.jpg"
-                alt="HVAC Unit"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="relative w-full h-64 mt-4 rounded-lg overflow-hidden">
-              <Image
-                src="/images/hvac3.jpg"
-                alt="HVAC Ducts"
-                fill
-                className="object-cover"
-              />
+        {/* RIGHT SIDE: Bento Grid */}
+        <div className="relative grid gap-4">
+          {/* Top Left Image */}
+          <div className="w-full flex gap-4">
+          <div className="w-1/2 w-80 relative h-110 rounded-xl overflow-hidden">
+            <Image
+              src="/about/hvac1.png"
+              alt="HVAC Outdoor Units"
+              fill
+              className="object-cover"
+            />
+          </div>
+
+          {/* Top Right Image */}
+            <div className="w-1/2 relative flex flex-col gap-9">
+              {/* Top Image */}
+              <div className="relative w-full h-64 rounded-xl overflow-hidden">
+                <Image
+                  src="/about/hvac2.png"
+                  alt="HVAC Vent System"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Bottom Image */}
+              <div className="relative w-full h-34 rounded-xl overflow-hidden">
+                <Image
+                  src="/about/hvac-solutions.png"
+                  alt="HVAC Solutions"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
 
-          <div className="col-span-1 flex flex-col justify-between">
-            <div className="relative w-full h-64 rounded-lg overflow-hidden">
+          <div className="w-full flex gap-4">
+            {/* Bottom Left Image */}
+            <div className="w-1/3 relative h-64 rounded-xl overflow-hidden">
               <Image
-                src="/images/hvac2.jpg"
-                alt="HVAC Vent"
-                fill
-                className="object-cover"
-              />
-            </div>
-
-            <div className="relative w-full h-64 mt-4 rounded-lg overflow-hidden">
-              <Image
-                src="/images/hvac4.jpg"
+                src="/about/hvac3.png"
                 alt="HVAC Pipes"
                 fill
                 className="object-cover"
               />
             </div>
+
+            {/* Bottom Right Image */}
+            <div className="w-2/3 relative h-64 rounded-xl overflow-hidden">
+              <Image
+                src="/about/hvac4.png"
+                alt="HVAC Air Ducts"
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
 
-          {/* HVAC Solutions Title Overlay */}
-          <div className="absolute bottom-0 right-0 translate-y-20">
-            <h3 className="text-5xl md:text-6xl font-extrabold text-red-700 tracking-tight">
-              HVAC
-            </h3>
-            <h3 className="text-5xl md:text-6xl font-extrabold text-black tracking-tight -mt-2">
-              SOLUTIONS
-            </h3>
-          </div>
+
         </div>
+
+
       </div>
     </section>
   );

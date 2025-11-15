@@ -5,23 +5,25 @@ import { FC } from "react";
 
 const FoundersNote: FC = () => {
   return (
-    <section className="bg-white py-20 px-6">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        {/* Left: Image */}
-        <div className="flex justify-center">
-          <div className="relative w-72 h-72 md:w-80 md:h-80 rounded-2xl overflow-hidden shadow-lg">
+    <section className="bg-white py-20 px-6 lg:px-20">
+      <div className="flex flex-col md:flex-row gap-12 items-center">
+
+        {/* Left: Image (1/3 width on desktop) */}
+        <div className="w-full md:w-1/3 flex justify-center md:justify-start">
+          <div className="rounded-2xl overflow-hidden w-full">
             <Image
-              src="/images/founder.jpg" // 🖼️ replace with your actual image path
+              src="/about/founder.png"
               alt="Founder of Dwarka Enterprise"
-              fill
-              className="object-cover"
+              width={500}
+              height={500}
+              className="w-full h-auto object-cover"
               priority
             />
           </div>
         </div>
 
-        {/* Right: Content */}
-        <div>
+        {/* Right: Content (2/3 width on desktop) */}
+        <div className="w-full md:w-2/3">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
             Founder’s Note
           </h2>
@@ -44,7 +46,7 @@ const FoundersNote: FC = () => {
             </p>
           </div>
 
-          <div className="mt-8">
+          <div className="mt-8 flex flex-col items-end text-right">
             <h3 className="text-lg font-semibold text-gray-900">
               Jagdishrai Jain
             </h3>
@@ -53,6 +55,7 @@ const FoundersNote: FC = () => {
             </p>
           </div>
         </div>
+
       </div>
     </section>
   );

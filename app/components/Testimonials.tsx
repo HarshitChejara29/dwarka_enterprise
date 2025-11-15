@@ -10,28 +10,28 @@ const testimonials = [
       'Excellent HVAC service that keeps the air quality good and the system working reliably in our healthcare facility.',
     name: 'AMC hospital',
     location: 'Surat',
-    image: '/testimonials/amc.jpg',
+    image: '/projects/hospitals/hospital1.jpg',
   },
   {
     quote:
       'Great HVAC service that keeps our environment comfortable and safe, with quick support whenever needed.',
     name: 'Galaxy hospital',
     location: 'Bardoli',
-    image: '/testimonials/galaxy.jpg',
+    image: '/projects/hospitals/hospital2.jpg',
   },
   {
     quote:
       'Reliable HVAC service that keeps our hospital comfortable and running smoothly at all times.',
     name: 'Shah hospital',
     location: 'Karnal',
-    image: '/testimonials/shah.jpg',
+    image: '/projects/hospitals/hospital3.png',
   },
   {
     quote:
       'Professional HVAC maintenance team ensuring consistent performance and reliability.',
-    name: 'Metro hospital',
-    location: 'Vadodara',
-    image: '/testimonials/metro.jpg',
+    name: 'Kilkari hospital',
+    location: 'Surat',
+    image: '/projects/hospitals/hospital8.png',
   },
 ];
 
@@ -63,11 +63,11 @@ export default function TestimonialsSection() {
           <button
             onClick={prev}
             disabled={current === 0}
-            className={`absolute -left-8 z-10 p-2 rounded-full hover:bg-gray-100 transition ${
+            className={`absolute -left-8 z-10 p-2 rounded-full hover:bg-gray-100 text-black hover:scale-110 transition ${
               current === 0 ? 'opacity-30 cursor-not-allowed' : ''
             }`}
           >
-            <ChevronLeft size={30} strokeWidth={1.5} />
+            <ChevronLeft size={32} strokeWidth={1.5} />
           </button>
 
           {/* Cards Container */}
@@ -79,19 +79,19 @@ export default function TestimonialsSection() {
               {testimonials.map((t, i) => (
                 <div
                   key={i}
-                  className="bg-[#F7F6F2] flex-shrink-0 rounded-2xl p-6 w-full md:w-1/3 shadow-sm hover:shadow-md transition flex flex-col justify-between"
+                  className="bg-[#F7F6F2] flex-shrink-0 rounded-2xl p-6 w-full md:w-1/3 transition flex flex-col justify-between"
                 >
                   <p className="text-gray-700 text-base leading-relaxed mb-6">
                     “{t.quote}”
                   </p>
 
-                  <div className="pt-4 border-t border-transparent flex items-center gap-3">
-                    <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border border-gray-200">
+                  <div className="pt-4 flex items-center gap-3">
+                    <div className="relative w-12 h-12 rounded-full overflow-hidden border-1 border-gray-900 flex-shrink-0 border border-gray-200">
                       <Image
                         src={t.image}
                         alt={t.name}
                         fill
-                        className="object-cover"
+                        className="object-cover rounded-full"
                       />
                     </div>
                     <div>
@@ -109,13 +109,13 @@ export default function TestimonialsSection() {
           <button
             onClick={next}
             disabled={current >= testimonials.length - 3}
-            className={`absolute -right-8 z-10 p-2 rounded-full hover:bg-gray-100 transition ${
+            className={`absolute -right-8 z-10 p-2 rounded-full hover:bg-gray-100 text-black hover:scale-110 transition ${
               current >= testimonials.length - 3
                 ? 'opacity-30 cursor-not-allowed'
                 : ''
             }`}
           >
-            <ChevronRight size={30} strokeWidth={1.5} />
+            <ChevronRight size={32} strokeWidth={1.5} />
           </button>
         </div>
       </div>

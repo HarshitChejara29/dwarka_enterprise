@@ -89,25 +89,25 @@ export default function GalleryGrid() {
           {/* CLOSE BUTTON */}
           <button
             onClick={() => setPopupIndex(null)}
-            className="absolute top-6 right-6 text-white hover:scale-110 transition"
+            className="absolute top-6 right-6 p-2 rounded-full hover:bg-gray-100 hover:text-black text-white hover:scale-110 transition"
           >
-            <X size={40} />
+            <X size={32} />
           </button>
 
           {/* PREV BUTTON */}
           <button
             onClick={prevSlide}
-            className="absolute left-4 md:left-10 text-white hover:scale-110 transition"
+            className="absolute left-4 md:left-6 p-2 rounded-full hover:bg-gray-100 hover:text-black text-white hover:scale-110 transition"
           >
-            <ChevronLeft size={55} />
+            <ChevronLeft size={32} />
           </button>
 
           {/* NEXT BUTTON */}
           <button
             onClick={nextSlide}
-            className="absolute right-4 md:right-10 text-white hover:scale-110 transition"
+            className="absolute right-4 md:right-6 p-2 rounded-full hover:bg-gray-100 hover:text-black text-white hover:scale-110 transition"
           >
-            <ChevronRight size={55} />
+            <ChevronRight size={32} />
           </button>
 
           {/* POPUP IMAGE */}

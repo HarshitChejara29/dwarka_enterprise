@@ -58,7 +58,7 @@ export default function SiteVideos() {
         {/* LEFT ARROW */}
         <button
           onClick={prev}
-          className="absolute -left-10 z-10 p-2 rounded-full hover:bg-gray-100 transition"
+          className="absolute -left-10 z-10 p-2 rounded-full hover:scale-110 hover:bg-gray-100 transition"
         >
           <ChevronLeft size={32} strokeWidth={1.5} />
         </button>
@@ -77,7 +77,7 @@ export default function SiteVideos() {
               >
                 {/* Play Icon */}
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 flex items-center justify-center transition">
-                  <Play size={50} className="text-white opacity-90" />
+                  <Play size={32} className="text-white opacity-90" />
                 </div>
 
                 <video
@@ -92,7 +92,7 @@ export default function SiteVideos() {
         {/* RIGHT ARROW */}
         <button
           onClick={next}
-          className="absolute -right-10 z-10 p-2 rounded-full hover:bg-gray-100 transition"
+          className="absolute -right-10 z-10 p-2 rounded-full hover:scale-110 hover:bg-gray-100 transition"
         >
           <ChevronRight size={32} strokeWidth={1.5} />
         </button>
@@ -106,9 +106,9 @@ export default function SiteVideos() {
           {/* CLOSE */}
           <button
             onClick={() => setPopupIndex(null)}
-            className="absolute top-6 lg:right-6 right-2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-200"
+            className="absolute top-6 right-6 p-2 rounded-full hover:bg-gray-100 hover:text-black text-white hover:scale-110 transition"
           >
-            <X size={28} />
+            <X size={32} />
           </button>
 
           {/* POPUP VIDEO */}
@@ -124,16 +124,14 @@ export default function SiteVideos() {
           {/* POPUP PREV */}
           <button
             onClick={popupPrev}
-            className="absolute lg:left-70 left-2 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100"
-          >
+            className="absolute left-4 md:left-6 p-2 rounded-full hover:bg-gray-100 hover:text-black text-white hover:scale-110 transition">
             <ChevronLeft size={32} />
           </button>
 
           {/* POPUP NEXT */}
           <button
             onClick={popupNext}
-            className="absolute lg:right-70 right-2 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100"
-          >
+            className="absolute right-4 md:right-6 p-2 rounded-full hover:bg-gray-100 hover:text-black text-white hover:scale-110 transition">
             <ChevronRight size={32} />
           </button>
         </div>

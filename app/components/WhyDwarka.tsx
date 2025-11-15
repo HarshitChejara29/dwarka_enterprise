@@ -2,32 +2,38 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import Link from "next/link";
 
 const whyData = [
   {
-    icon: "/icons/expertise.svg",
+    icon: "/about/icons/expertise.png",
     title: "Expertise",
     desc: "Our seasoned engineers provide HVAC solutions for optimal performance.",
   },
   {
-    icon: "/icons/quality.svg",
+    icon: "/about/icons/quality.png",
     title: "Quality Assurance",
     desc: "Partnering with LG ensures industry-leading products and standards.",
   },
   {
-    icon: "/icons/customer.svg",
+    icon: "/about/icons/customer.png",
     title: "Customer-Centric",
     desc: "We prioritize your unique needs and exceed expectations.",
   },
   {
-    icon: "/icons/sustainability.svg",
+    icon: "/about/icons/sustainability.png",
     title: "Sustainability",
     desc: "We reduce your carbon footprint and operational costs.",
   },
   {
-    icon: "/icons/innovation.svg",
+    icon: "/about/icons/innovation.png",
     title: "Innovation",
     desc: "Stay ahead with cutting-edge, energy-efficient technology.",
+  },
+  {
+    icon: "/about/icons/safety.png",
+    title: "Innovation",
+    desc: "Our rigorous safety protocols and adaptability guarantee satisfaction.",
   },
 ];
 
@@ -43,13 +49,17 @@ const WhyDwarka = () => {
   };
 
   return (
-    <section className="bg-[#0C1622] text-white rounded-3xl px-6 md:px-10 lg:px-16 py-16 relative overflow-hidden">
+    <section className="px-6 py-16">
+    <div className="bg-[#0C1622] text-white rounded-3xl px-6 md:px-10 lg:px-16 py-16 relative overflow-hidden">
       {/* Header */}
       <div className="flex justify-between items-center mb-10">
         <h2 className="text-4xl lg:text-5xl font-bold">Why Dwarka</h2>
-        <button className="border border-white text-white px-5 py-2 rounded-lg flex items-center gap-2 hover:bg-white hover:text-[#0C1622] transition">
+        <Link
+            href="/product"
+            className="border border-white text-white hover:text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-white transition whitespace-nowrap"
+          >
           Know More →
-        </button>
+        </Link>
       </div>
 
       {/* Scrollable Cards */}
@@ -70,7 +80,7 @@ const WhyDwarka = () => {
           {whyData.map((item, index) => (
             <div
               key={index}
-              className="min-w-[250px] md:min-w-[280px] bg-white text-[#0C1622] rounded-2xl p-6 flex-shrink-0 shadow-md"
+              className="max-w-[280px] bg-white text-[#0C1622] rounded-2xl p-6 flex-shrink-0 shadow-md"
             >
               <div className="flex flex-col gap-3">
                 <Image
@@ -99,6 +109,7 @@ const WhyDwarka = () => {
           <FiChevronRight className="text-2xl text-white" />
         </button>
       </div>
+    </div>
     </section>
   );
 };

@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const categories = ['All', 'Hospitals', 'Industries', 'Education', 'Corporate & Government'];
+const categories = ['All', 'Hospitals', 'Industries', 'Education', 'Corporate & Government', 'Other'];
 
 const projects = [
   { src: '/projects/hospitals/hospital1.jpg', category: 'Hospitals' },
@@ -28,32 +29,74 @@ const projects = [
   { src: '/projects/corporate/corporate9.jpg', category: 'Corporate & Government' },
   { src: '/projects/industries/industry3.jpg', category: 'Industries' },
   { src: '/projects/hospitals/hospital3.png', category: 'Hospitals' },
+  { src: '/projects/other/other3.jpg', category: 'Other' },
   { src: '/projects/education/education3.jpg', category: 'Education' },
+  { src: '/projects/other/other10.png', category: 'Other' },
   { src: '/projects/corporate/corporate4.jpg', category: 'Corporate & Government' },
   { src: '/projects/industries/industry6.jpg', category: 'Industries' },
+  { src: '/projects/other/other4.png', category: 'Other' },
   { src: '/projects/hospitals/hospital4.png', category: 'Hospitals' },
   { src: '/projects/corporate/corporate5.png', category: 'Corporate & Government' },
+  { src: '/projects/other/other5.png', category: 'Other' },
   { src: '/projects/hospitals/hospital8.png', category: 'Hospitals' },
   { src: '/projects/education/education4.png', category: 'Education' },
+  { src: '/projects/other/other6.png', category: 'Other' },
+  { src: '/projects/other/other1a.png', category: 'Other' },
   { src: '/projects/industries/industry7.png', category: 'Industries' },
   { src: '/projects/corporate/corporate6.png', category: 'Corporate & Government' },
+  { src: '/projects/other/other7.png', category: 'Other' },
   { src: '/projects/corporate/corporate7.jpg', category: 'Corporate & Government' },
   { src: '/projects/industries/industry8.png', category: 'Industries' },
+  { src: '/projects/other/other8.png', category: 'Other' },
   { src: '/projects/corporate/corporate8.png', category: 'Corporate & Government' },
   { src: '/projects/education/education7.jpg', category: 'Education' },
+  { src: '/projects/other/other9.png', category: 'Other' },
+  { src: '/projects/other/other2.png', category: 'Other' },
 ];
 
 export default function ProjectGallery() {
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [visibleCount, setVisibleCount] = useState(12);
+
+  // popup
+  const [popupIndex, setPopupIndex] = useState<number | null>(null);
 
   const filteredProjects =
     selectedCategory === 'All'
       ? projects
       : projects.filter((p) => p.category === selectedCategory);
 
+  // Reset visible count when category changes
+  useEffect(() => {
+    setVisibleCount(12);
+  }, [selectedCategory]);
+
+  const openPopup = (index: number) => {
+    setPopupIndex(index);
+  };
+
+  const closePopup = () => {
+    setPopupIndex(null);
+  };
+
+  const next = () => {
+    setPopupIndex((i) => {
+      if (i === null) return 0;
+      return i === filteredProjects.length - 1 ? 0 : i + 1;
+    });
+  };
+
+  const prev = () => {
+    setPopupIndex((i) => {
+      if (i === null) return 0;
+      return i === 0 ? filteredProjects.length - 1 : i - 1;
+    });
+  };
+
   return (
     <section className="py-18 px-6 lg:px-20">
-      <div className="">
+      <div>
+
         {/* Filter Buttons */}
         <div className="flex flex-wrap justify-start gap-3 mb-18">
           {categories.map((category) => (
@@ -71,12 +114,13 @@ export default function ProjectGallery() {
           ))}
         </div>
 
-        {/* Projects Grid */}
+        {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {filteredProjects.map((project, i) => (
+          {filteredProjects.slice(0, visibleCount).map((project, i) => (
             <div
               key={i}
-              className="relative aspect-square overflow-hidden rounded-xl shadow-sm hover:shadow-md transition"
+              onClick={() => openPopup(i)}
+              className="relative aspect-square overflow-hidden rounded-xl shadow-sm hover:shadow-md transition cursor-pointer"
             >
               <Image
                 src={project.src}
@@ -88,13 +132,57 @@ export default function ProjectGallery() {
           ))}
         </div>
 
-        {/* Show more button */}
-        <div className="flex justify-center mt-18">
-          <button className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition">
-            Show more
-          </button>
-        </div>
+        {/* Show More */}
+        {visibleCount < filteredProjects.length && (
+          <div className="flex justify-center mt-18">
+            <button
+              onClick={() => setVisibleCount((prev) => prev + 12)}
+              className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition"
+            >
+              Show more
+            </button>
+          </div>
+        )}
       </div>
+
+      {/* POPUP */}
+      {popupIndex !== null && (
+        <div
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50"
+        >
+          {/* Close */}
+          <button
+            className="absolute top-6 right-6 p-2 rounded-full hover:bg-gray-100 hover:text-black text-white hover:scale-110 transition"
+            onClick={closePopup}
+          >
+            <X size={32} />
+          </button>
+
+          {/* Prev */}
+          <button
+            className="absolute left-4 md:left-6 p-2 rounded-full hover:bg-gray-100 hover:text-black text-white hover:scale-110 transition"
+            onClick={prev}>
+            <ChevronLeft size={32} />
+          </button>
+
+          {/* Next */}
+          <button
+            className="absolute right-4 md:right-6 p-2 rounded-full hover:bg-gray-100 hover:text-black text-white hover:scale-110 transition"
+            onClick={next}>
+            <ChevronRight size={32} />
+          </button>
+
+          {/* Image */}
+          <div className="relative w-[90%] md:w-[70%] lg:w-[50%] h-[70vh]">
+            <Image
+              src={filteredProjects[popupIndex].src}
+              alt=""
+              fill
+              className="object-contain"
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }
